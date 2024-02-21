@@ -6,6 +6,7 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\CompetitionController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('teams', TeamController::class);
-    Route::resource('competitions', CompetitionController::class); 
+    Route::resource('competitions', CompetitionController::class);
+    Route::get('competition/autocreate', [CompetitionController::class, "autocreate"])->name('competitions.autocreate');
+    Route::get('competition/destroyall', [CompetitionController::class, "destroyall"])->name('competitions.destroyall');
 });
 
 require __DIR__.'/auth.php';
