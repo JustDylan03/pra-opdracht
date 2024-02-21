@@ -5,7 +5,7 @@
         <div class="col-12 mx-auto">
             <div class="my-4 p-3">
             <h1 class="h1" >Create new Team</h1>
-                <form action="{{ route('teams.store') }}" method="POST"">
+                <form action="{{ route('teams.store') }}" method="POST">
                     
                     @csrf
                     <div class="row mb-3 justify-content-center">

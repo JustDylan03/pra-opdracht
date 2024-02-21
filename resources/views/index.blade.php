@@ -3,7 +3,7 @@
 <div class="row justify-content-center">
     <div class="col-4">
         <h1 class="h1">Welcome</h1>
-        <img class="m-5" src="{{ asset('images/soccerfield.webp') }}" alt="Soccer field">
+        <img class="m-5" src="{{ asset('img/voetbal.jpg') }}" alt="voetbal">
     </div>
     <div class="col-4">
     <p class="m-5" >
