@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use illuminate\Http\JsonResponse;
+use \Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Competition;
 use App\Models\Team;
@@ -174,5 +175,39 @@ class CompetitionController extends Controller
             return view('competitions.index');
         }
 
+    }
+    public function apiAllCompetitions(): JsonResponse
+    {
+        $competitions = Competition::select(
+            // 'competitions.id as competition_id',
+            'team1.id as team1_id',
+            'team1.name as team1_name',
+            'team2.id as team2_id',
+            'team2.name as team2_name'
+        )
+            ->leftJoin('teams as team1', 'team1.id', '=', 'competitions.team1_id')
+            ->leftJoin('teams as team2', 'team2.id', '=', 'competitions.team2_id')
+            ->get();
+
+        return response()->json($competitions);
+    }
+
+
+    public function apiResults(): JsonResponse
+    {
+        $competitions = Competition::select(
+            'team1.id as team1_id',
+            'team1.name as team1_name',
+            'competitions.team1_score as team1_score',
+            'team2.id as team2_id',
+            'team2.name as team2_name',
+            'competitions.team2_score as team2_score',
+            DB::raw('CASE WHEN competitions.team1_score > competitions.team2_score THEN team1.id ELSE team2.id END as winning_team_id')
+        )
+            ->leftJoin('teams as team1', 'team1.id', '=', 'competitions.team1_id')
+            ->leftJoin('teams as team2', 'team2.id', '=', 'competitions.team2_id')
+            ->get();
+
+        return response()->json($competitions);
     }
 }

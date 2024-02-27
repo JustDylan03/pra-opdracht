@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\CompetitionController;
+use App\Http\Controllers\GoalController;
 
 
 /*
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('competitions', CompetitionController::class);
     Route::get('competition/autocreate', [CompetitionController::class, "autocreate"])->name('competitions.autocreate');
     Route::get('competition/destroyall', [CompetitionController::class, "destroyall"])->name('competitions.destroyall');
+    Route::resource('goals', GoalController::class);
 });
 
 require __DIR__.'/auth.php';

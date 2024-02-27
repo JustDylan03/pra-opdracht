@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
         \App\Models\Team::factory(10)->create();
         \App\Models\Competition::factory(10)->create();
+        \App\Models\Goal::factory(10)->create();
 
         // Users with specific values
         // Admin with is_admin set to true (1)
